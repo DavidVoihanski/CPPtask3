@@ -1,6 +1,10 @@
 #include "PhysicalNumber.h"
 using namespace ariel;
 
+PhysicalNumber::PhysicalNumber(double num, Unit unit){
+
+}
+
 void PhysicalNumber::operator++(){
 
 }
@@ -42,9 +46,9 @@ const bool PhysicalNumber::operator==(const PhysicalNumber& other)const{
 const bool PhysicalNumber::operator!=(const PhysicalNumber& other)const{
     
 }
-std::ostream &operator<<(std::ostream &os, PhysicalNumber const &m){
-
+std::ostream &ariel::operator<<(std::ostream &os, PhysicalNumber const &m){
+    return os;
 }
-std::istream &operator>>(std::istream &is, PhysicalNumber const &m){
-
+std::istream &ariel::operator>>(std::istream &is, PhysicalNumber const &m){
+    return is;
 }
