@@ -1,7 +1,7 @@
 #include "PhysicalNumber.h"
 using namespace ariel;
 
-PhysicalNumber::PhysicalNumber(double num, Unit unit){
+PhysicalNumber::PhysicalNumber(double num, ariel::Unit unit){
 
 }
 

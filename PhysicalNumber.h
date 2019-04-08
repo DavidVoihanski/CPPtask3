@@ -4,7 +4,7 @@
 namespace ariel{
     class PhysicalNumber{
         public:
-        PhysicalNumber(int num, Unit unit);
+        PhysicalNumber(double num, Unit unit);
         //arithmetics
         const PhysicalNumber operator+(const PhysicalNumber& other) const;
         const PhysicalNumber operator+=(const PhysicalNumber& other) const;
