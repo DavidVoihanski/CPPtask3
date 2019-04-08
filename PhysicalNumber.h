@@ -1,6 +1,6 @@
 #include "Unit.h"
 #pragma once
-using namespace std;
+#include <iostream>
 namespace ariel{
     class PhysicalNumber{
         public:
