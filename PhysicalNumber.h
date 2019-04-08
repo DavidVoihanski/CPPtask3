@@ -3,6 +3,9 @@
 #include <iostream>
 namespace ariel{
     class PhysicalNumber{
+        private:
+        double value;
+        ariel::Unit unit;
         public:
         PhysicalNumber(double num, Unit unit);
         //arithmetics
