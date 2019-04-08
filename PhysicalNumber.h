@@ -11,6 +11,8 @@ namespace ariel{
         const PhysicalNumber operator-(const PhysicalNumber& other) const;
         const PhysicalNumber operator-=(const PhysicalNumber& other) const;
         const PhysicalNumber operator-() const;
+        void operator--();
+        void operator++();
 
         //compare
         const bool operator>(const PhysicalNumber& other)const;
@@ -18,6 +20,7 @@ namespace ariel{
         const bool operator==(const PhysicalNumber& other)const;
         const bool operator<=(const PhysicalNumber& other)const;
         const bool operator>=(const PhysicalNumber& other)const;
+        const bool operator!=(const PhysicalNumber& other)const;
         //input output
         friend std::ostream &operator<<(std::ostream &os, PhysicalNumber const &m);
         friend std::istream &operator>>(std::istream &is, PhysicalNumber const &m);
