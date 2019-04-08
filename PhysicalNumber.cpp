@@ -11,6 +11,10 @@ void PhysicalNumber::operator--(){
 const PhysicalNumber PhysicalNumber::operator+=(const PhysicalNumber &other) const{
     
 }
+const PhysicalNumber PhysicalNumber::operator-() const{
+
+}
+
 const PhysicalNumber PhysicalNumber::operator-=(const PhysicalNumber &other) const{
 
 }
