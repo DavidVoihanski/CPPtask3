@@ -11,18 +11,24 @@ using std::cout, std::endl, std::istringstream;
 #include "PhysicalNumber.h"
 using ariel::PhysicalNumber, ariel::Unit;
 #include "badkan.hpp"
+#include <cstdlib>
+#include <ctime>
 
 int main() {
   badkan::TestCase testcase;
   int grade=0;
   int signal = setjmp(badkan::longjmp_buffer);
   if (signal == 0) {
-
     // BASIC TESTS - DO NOT CHANGE
     PhysicalNumber a(2, Unit::KM);
     PhysicalNumber b(300, Unit::M);
     PhysicalNumber c(2, Unit::HOUR);
     PhysicalNumber d(30, Unit::MIN);
+    //my test
+    PhysicalNumber kg(1, Unit::KG);
+    PhysicalNumber ton(3, Unit::TON);
+    PhysicalNumber random_(rand()%100, Unit::G);
+    srand(time(0));
 
     testcase
     .setname("Basic output")
@@ -50,7 +56,29 @@ int main() {
     .CHECK_OUTPUT((a += PhysicalNumber(1, Unit::TON)), "1700[kg]")
 
     // YOUR TESTS - INSERT AS MANY AS YOU WANT
-    
+    //ARITHMETICS
+    .CHECK_OUTPUT(random_-random_,"0[g]")
+    .CHECK_THROWS(kg+c)
+    .CHECK_OUTPUT(kg+ton, "3001[kg]")
+    .CHECK_OUTPUT(ton+kg,"1.001[ton]")
+    .CHECK_OUTPUT(-kg, "-1[kg]")
+    .CHECK_OUTPUT(-ton,"-3[ton]")
+    .CHECK_OUTPUT(-a, "-2[km]")
+    .CHECK_OUTPUT(kg+kg+ton+ton-ton,"3002[kg]")
+    .CHECK_OUTPUT(++kg ,"2[kg]")
+    .CHECK_OUTPUT(--kg , "1[kg]")
+    //BOOLS
+    .CHECK_EQUAL(kg == ton, false)
+    .CHECK_EQUAL(kg == kg, true)
+    .CHECK_EQUAL(kg != ton, true)
+    .CHECK_EQUAL(kg != kg, false)
+    .CHECK_EQUAL(kg < ton, true)
+    .CHECK_EQUAL(kg <= ton, true)
+    .CHECK_EQUAL(kg > ton, false)
+    .CHECK_EQUAL(kg > ton, false)
+    .CHECK_EQUAL(kg > ton && kg <= ton, false)
+    .CHECK_EQUAL(kg > ton || kg <= ton, true)
+
       .setname("...")
 
       .print(cout, /*show_grade=*/false);
