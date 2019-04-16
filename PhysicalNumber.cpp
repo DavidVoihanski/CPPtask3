@@ -152,7 +152,6 @@ bool PhysicalNumber::operator!=(const PhysicalNumber& other)const{
 
 //io*****************************************************************************************************************
 std::ostream &ariel::operator<<(std::ostream &os, PhysicalNumber const &m){
-
     std::string unitString = m.units[(int)m.getUnit()];
     return os << m.getValue() << "[" <<unitString << "]";
 }
@@ -166,10 +165,11 @@ std::istream &ariel::operator>>(std::istream &is, PhysicalNumber &m){
     int unitIndex = m.findUnitIndex(unitString);
     if(value == NAN || unitIndex == -1){
         // rewind on error
+        is.setstate(std::ios::failbit);
         auto errorState = is.rdstate(); // remember error state
-        is.clear(); // clear error so seekg will work
-        is.seekg(startPosition); // rewind
-        is.clear(errorState); // set back the error flag
+        is.clear();                     // clear error so seekg will work
+        is.seekg(startPosition);        // rewind
+        is.clear(errorState);           // set back the error flag
     }
     else{
         Unit unit = (Unit)unitIndex;
