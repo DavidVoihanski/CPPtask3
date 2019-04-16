@@ -9,9 +9,9 @@ PhysicalNumber::~PhysicalNumber(){
     
 }
 std::string PhysicalNumber::toString() const{
-    double value = getValue();
+    double value = this->getValue();
     int arrayIndex = (int)this->getUnit();
-    std::string unitString = units[arrayIndex];
+    std::string unitString = this->units[arrayIndex];
     std::string returnString = std::to_string(value) + '[' + unitString + ']';
 }
 //getters and setters
