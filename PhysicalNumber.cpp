@@ -73,6 +73,9 @@ const PhysicalNumber PhysicalNumber::operator-() const{
     PhysicalNumber toReturn(newValue, this->getUnit());
     return toReturn;
 }
+const PhysicalNumber& PhysicalNumber::operator+() const{
+    return *this;
+}
 
 const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber &other) const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
