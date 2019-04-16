@@ -18,6 +18,7 @@ namespace ariel{
         std::string parseUnit(std::string input) const;
         double parseValue(std::string input) const;
         int findUnitIndex(std::string unitString) const;
+        bool isGoodFormat(std::string input) const;
         public:
         std::string toString() const;
         std::string units[9] = {"km","m","cm","hour","min","sec","ton", "kg", "g"};

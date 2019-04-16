@@ -163,7 +163,7 @@ std::istream &ariel::operator>>(std::istream &is, PhysicalNumber &m){
     std::string unitString = m.parseUnit(input);
     double value = m.parseValue(input);
     int unitIndex = m.findUnitIndex(unitString);
-    if(value == NAN || unitIndex == -1){
+    if(value == NAN || unitIndex == -1 ||!m.isGoodFormat(input)){
         // rewind on error
         is.setstate(std::ios::failbit);
         auto errorState = is.rdstate(); // remember error state
@@ -334,4 +334,11 @@ int PhysicalNumber::findUnitIndex(std::string unitString) const{
     for(int i =0; i<9; i++)
         if(this->units[i].compare(unitString) == 0) return i;
     return -1;
+}
+
+bool PhysicalNumber::isGoodFormat(std::string input) const{
+    if(input[0] == '[') return false;
+    if(input[input.length() != ']']) return false;
+    if (input.find('[') == std::string::npos || input.find(']') == std::string::npos) return false;
+    return true;
 }
