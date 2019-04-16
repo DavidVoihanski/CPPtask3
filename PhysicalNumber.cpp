@@ -190,7 +190,7 @@ const PhysicalNumber PhysicalNumber::convertNumber(const PhysicalNumber &other) 
     Unit otherUnit = other.getUnit();
     int thisInt = (int)thisUnit;
     int otherInt = (int)otherUnit;
-    int diff = thisInt - otherInt; //shows us which way sould we 'go' and how many steps should range from -2 to 2
+    int diff = otherInt - thisInt; //shows us which way sould we 'go' and how many steps should range from -2 to 2
     double newValue;
     if(this->areSameScope(other)) return other; //if there is no need to convert
     if(thisUnit == Unit::KM || thisUnit == Unit::M || thisUnit == Unit::CM){
@@ -202,6 +202,7 @@ const PhysicalNumber PhysicalNumber::convertNumber(const PhysicalNumber &other) 
     else if(thisUnit == Unit::TON || thisUnit == Unit::KG || thisUnit == Unit::G){
         newValue = other.convertMassValue(diff);
     }
+    std::cout << diff << std::endl;
     PhysicalNumber toReturn(newValue, thisUnit);
     return toReturn;
 }
@@ -226,9 +227,9 @@ double PhysicalNumber::convertDistanceValue(int diff) const{
 
             case 1:
                 if(unit == Unit::M){
-                    newValue = newValue/100;
+                    newValue = newValue/1000;
                 }
-                else newValue = newValue/1000;
+                else newValue = newValue/100;
                 break;
 
             case 2:

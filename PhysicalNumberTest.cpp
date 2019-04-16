@@ -63,7 +63,7 @@ int main() {
     .CHECK_OUTPUT(ton+kg,"1.001[ton]")
     .CHECK_OUTPUT(-kg, "-1[kg]")
     .CHECK_OUTPUT(-ton,"-3[ton]")
-    .CHECK_OUTPUT(-a, "-2[km]")
+    .CHECK_OUTPUT(-a, "-2.3[km]")
     .CHECK_OUTPUT(kg+kg+ton+ton-ton,"3002[kg]")
     .CHECK_OUTPUT(++kg ,"2[kg]")
     .CHECK_OUTPUT(--kg , "1[kg]")
