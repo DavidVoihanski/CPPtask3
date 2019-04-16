@@ -23,23 +23,23 @@ namespace ariel{
         void setValue(double x);
         void setUnit(Unit u);
         //arithmetics
-        const PhysicalNumber operator+(const PhysicalNumber& other) const;
-        const PhysicalNumber& operator+=(const PhysicalNumber& other);
-        const PhysicalNumber operator-(const PhysicalNumber& other) const;
-        const PhysicalNumber& operator-=(const PhysicalNumber& other);
-        const PhysicalNumber operator-() const;
-        const PhysicalNumber& operator+() const;
-        const PhysicalNumber& operator--();
-        const PhysicalNumber operator--(int);
-        const PhysicalNumber& operator++();
-        const PhysicalNumber operator++(int);
+        PhysicalNumber operator+(const PhysicalNumber& other) const;
+        PhysicalNumber& operator+=(const PhysicalNumber& other);
+        PhysicalNumber operator-(const PhysicalNumber& other) const;
+        PhysicalNumber& operator-=(const PhysicalNumber& other);
+        PhysicalNumber operator-() const;
+        PhysicalNumber operator+() const;
+        PhysicalNumber& operator--();
+        PhysicalNumber operator--(int);
+        PhysicalNumber& operator++();
+        PhysicalNumber operator++(int);
         //compare
-        const bool operator>(const PhysicalNumber& other)const;
-        const bool operator<(const PhysicalNumber& other)const;
-        const bool operator==(const PhysicalNumber& other)const;
-        const bool operator<=(const PhysicalNumber& other)const;
-        const bool operator>=(const PhysicalNumber& other)const;
-        const bool operator!=(const PhysicalNumber& other)const;
+        bool operator>(const PhysicalNumber& other)const;
+        bool operator<(const PhysicalNumber& other)const;
+        bool operator==(const PhysicalNumber& other)const;
+        bool operator<=(const PhysicalNumber& other)const;
+        bool operator>=(const PhysicalNumber& other)const;
+        bool operator!=(const PhysicalNumber& other)const;
         //input output
         friend std::ostream &operator<<(std::ostream &os, PhysicalNumber const &m);
         friend std::istream &operator>>(std::istream &is, PhysicalNumber const &m);

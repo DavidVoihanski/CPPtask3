@@ -22,14 +22,14 @@ void PhysicalNumber::setUnit(Unit u){
     this->unit = u;
 }
 //prefix
-const PhysicalNumber& PhysicalNumber::operator++(){
+PhysicalNumber& PhysicalNumber::operator++(){
     double temp = this->getValue();
     temp++;
     this->setValue(temp);
     return *this;
 }
 //postfix
-const PhysicalNumber PhysicalNumber::operator++(int){
+PhysicalNumber PhysicalNumber::operator++(int){
     double temp = this->getValue();
     PhysicalNumber returned(temp, this->getUnit());
     temp++;
@@ -37,14 +37,14 @@ const PhysicalNumber PhysicalNumber::operator++(int){
     return returned;
 }
 //prefix
-const PhysicalNumber& PhysicalNumber::operator--(){
+PhysicalNumber& PhysicalNumber::operator--(){
     double temp = this->getValue();
     temp--;
     this->setValue(temp);
     return *this;
 }
 //postfix
-const PhysicalNumber PhysicalNumber::operator--(int){
+PhysicalNumber PhysicalNumber::operator--(int){
     double newValue = this->getValue();
     PhysicalNumber returned(newValue, this->getUnit());
     newValue--;
@@ -52,7 +52,7 @@ const PhysicalNumber PhysicalNumber::operator--(int){
     return returned;
 }
 //continue here********#@!$#@%@$%$%
-const PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber &other){
+PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber &other){
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double newValue = this->getValue() + calcTemp.getValue();
@@ -60,7 +60,7 @@ const PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber &other){
     return *this;
 }
 
-const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other){
+PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other){
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double newValue = this->getValue() - calcTemp.getValue();
@@ -68,16 +68,18 @@ const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other){
     return *this;
 }
 
-const PhysicalNumber PhysicalNumber::operator-() const{
+PhysicalNumber PhysicalNumber::operator-() const{
     double newValue = -this->getValue();
     PhysicalNumber toReturn(newValue, this->getUnit());
     return toReturn;
 }
-const PhysicalNumber& PhysicalNumber::operator+() const{
-    return *this;
+PhysicalNumber PhysicalNumber::operator+() const{
+    double newValue = this->getValue();
+    PhysicalNumber toReturn(newValue, this->getUnit());
+    return toReturn;
 }
 
-const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber &other) const{
+PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber &other) const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber toReturn = this->convertNumber(other);
     double newValue = this->getValue() + toReturn.getValue();
@@ -85,7 +87,7 @@ const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber &other) cons
     return toReturn;
 }
 
-const PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber &other) const{
+PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber &other) const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber toReturn = this->convertNumber(other);
     double newValue = this->getValue() - toReturn.getValue();
@@ -93,7 +95,7 @@ const PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber &other) cons
     return toReturn;
 }
 
-const bool PhysicalNumber::operator>(const PhysicalNumber& other)const{
+bool PhysicalNumber::operator>(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double thisValue = this->getValue();
@@ -101,7 +103,7 @@ const bool PhysicalNumber::operator>(const PhysicalNumber& other)const{
     return thisValue > otherValue;
 }
 
-const bool PhysicalNumber::operator<(const PhysicalNumber& other)const{
+bool PhysicalNumber::operator<(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double thisValue = this->getValue();
@@ -109,7 +111,7 @@ const bool PhysicalNumber::operator<(const PhysicalNumber& other)const{
     return thisValue < otherValue;
 }
 
-const bool PhysicalNumber::operator>=(const PhysicalNumber& other)const{
+bool PhysicalNumber::operator>=(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double thisValue = this->getValue();
@@ -117,7 +119,7 @@ const bool PhysicalNumber::operator>=(const PhysicalNumber& other)const{
     return thisValue >= otherValue;
 }
 
-const bool PhysicalNumber::operator<=(const PhysicalNumber& other)const{
+bool PhysicalNumber::operator<=(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double thisValue = this->getValue();
@@ -125,7 +127,7 @@ const bool PhysicalNumber::operator<=(const PhysicalNumber& other)const{
     return thisValue <= otherValue;
 }
 
-const bool PhysicalNumber::operator==(const PhysicalNumber& other)const{
+bool PhysicalNumber::operator==(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double thisValue = this->getValue();
@@ -133,7 +135,7 @@ const bool PhysicalNumber::operator==(const PhysicalNumber& other)const{
     return thisValue == otherValue;
 }
 
-const bool PhysicalNumber::operator!=(const PhysicalNumber& other)const{
+bool PhysicalNumber::operator!=(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber calcTemp = this->convertNumber(other);
     double thisValue = this->getValue();
