@@ -158,15 +158,24 @@ std::ostream &ariel::operator<<(std::ostream &os, PhysicalNumber const &m){
 }
 
 std::istream &ariel::operator>>(std::istream &is, PhysicalNumber &m){
-    std::string temp;
-    is >> temp;
-    const std::string input = temp;
+    std::ios::pos_type startPosition = is.tellg();
+    std::string input;
+    is >> input;
     std::string unitString = m.parseUnit(input);
     double value = m.parseValue(input);
     int unitIndex = m.findUnitIndex(unitString);
-    Unit unit = (Unit)unitIndex;
-    m.setValue(value);
-    m.setUnit(unit);
+    if(value == NAN || unitIndex == -1){
+        // rewind on error
+        auto errorState = is.rdstate(); // remember error state
+        is.clear(); // clear error so seekg will work
+        is.seekg(startPosition); // rewind
+        is.clear(errorState); // set back the error flag
+    }
+    else{
+        Unit unit = (Unit)unitIndex;
+        m.setValue(value);
+        m.setUnit(unit);
+    }
     return is;
 }
 
@@ -301,7 +310,12 @@ double PhysicalNumber::parseValue(std::string input) const{
     std::string delimiter = "[";
     std::string valueString = input.substr(0, input.find(delimiter));
     std::string::size_type sz;
-    double value = std::stod (valueString,&sz);
+    double value = NAN;
+    try{
+        value = std::stod (valueString,&sz);
+    }catch(...){
+        
+    }
     return value;
 }
 

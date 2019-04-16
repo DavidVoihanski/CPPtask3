@@ -2,6 +2,8 @@
 #pragma once
 #include <iostream>
 #include<string>
+#include <cmath>
+
 namespace ariel{
     class PhysicalNumber{
         private:
