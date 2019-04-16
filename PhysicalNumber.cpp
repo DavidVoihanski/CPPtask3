@@ -8,6 +8,12 @@ PhysicalNumber::PhysicalNumber(double num, ariel::Unit unit){
 PhysicalNumber::~PhysicalNumber(){
     
 }
+std::string PhysicalNumber::toString(){
+    double value = this->getValue();
+    int arrayIndex = (int)this->getUnit();
+    std::string unitString = this->units[arrayIndex];
+    std::string returnString = std::to_string(value) + '[' + unitString + ']';
+}
 //getters and setters
 Unit PhysicalNumber::getUnit() const{
     return this->unit;
@@ -143,6 +149,7 @@ bool PhysicalNumber::operator!=(const PhysicalNumber& other)const{
     return thisValue != otherValue;
 }
 
+//io*****************************************************************************************************************
 std::ostream &ariel::operator<<(std::ostream &os, PhysicalNumber const &m){
     return os;
 }
