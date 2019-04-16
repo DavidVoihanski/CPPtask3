@@ -57,13 +57,13 @@ int main() {
 
     // YOUR TESTS - INSERT AS MANY AS YOU WANT
     //ARITHMETICS
-    .CHECK_OUTPUT(random_-random_,"0[g]")
+    .CHECK_OUTPUT(random_ - random_,"0[g]")
     .CHECK_THROWS(kg+c)
     .CHECK_OUTPUT(kg+ton, "3001[kg]")
-    .CHECK_OUTPUT(ton+kg,"1.001[ton]")
+    .CHECK_OUTPUT(ton+kg,"3.001[ton]")
     .CHECK_OUTPUT(-kg, "-1[kg]")
     .CHECK_OUTPUT(-ton,"-3[ton]")
-    .CHECK_OUTPUT(-a, "-2.3[km]")
+    .CHECK_OUTPUT(-a, "-1700[kg]")
     .CHECK_OUTPUT(kg+kg+ton+ton-ton,"3002[kg]")
     .CHECK_OUTPUT(++kg ,"2[kg]")
     .CHECK_OUTPUT(--kg , "1[kg]")

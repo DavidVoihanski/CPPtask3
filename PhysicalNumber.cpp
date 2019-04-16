@@ -182,8 +182,10 @@ bool PhysicalNumber::areSameType(const PhysicalNumber &other) const{
         return (otherUnit == Unit::HOUR || otherUnit == Unit::MIN || otherUnit == Unit::SEC);
     }
     else if(thisUnit == Unit::TON || thisUnit == Unit::KG || thisUnit == Unit::G){
-        return (otherUnit == Unit::TON || otherUnit == Unit::KM || otherUnit == Unit::M);
+        return (otherUnit == Unit::TON || otherUnit == Unit::KG || otherUnit == Unit::G);
     }
+    //we covered every possible option, we mustn't get here
+    std::cout << "got here, not good" << std::endl;
     return false;
 }
 //assumes same type, i.e km and m
