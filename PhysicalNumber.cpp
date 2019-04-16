@@ -42,66 +42,103 @@ const PhysicalNumber& PhysicalNumber::operator--(){
 }
 //postfix
 const PhysicalNumber& PhysicalNumber::operator--(int){
-    double temp = this->getValue();
-    PhysicalNumber returned(temp, this->getUnit());
-    temp--;
-    this->setValue(temp);
+    double newValue = this->getValue();
+    PhysicalNumber returned(newValue, this->getUnit());
+    newValue--;
+    this->setValue(newValue);
     return returned;
 }
 //continue here********#@!$#@%@$%$%
-const PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber &other) const{
+const PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber &other){
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    PhysicalNumber toReturn = this->convertNumber(other);
-    PhysicalNumber temp(1,ariel::Unit::KM);
-    return temp;
-}
-const PhysicalNumber& PhysicalNumber::operator-() const{
-    PhysicalNumber temp(1,ariel::Unit::KM);
-    return temp;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double newValue = this->getValue() + calcTemp.getValue();
+    this->setValue(newValue);
+    return *this;
 }
 
-const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other) const{
+const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other){
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    PhysicalNumber temp(1,ariel::Unit::KM);
-    return temp;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double newValue = this->getValue() - calcTemp.getValue();
+    this->setValue(newValue);
+    return *this;
 }
+
+const PhysicalNumber& PhysicalNumber::operator-() const{
+    double newValue = -this->getValue();
+    PhysicalNumber toReturn(newValue, this->getUnit());
+    return toReturn;
+}
+
 const PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber &other) const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    PhysicalNumber temp(1,ariel::Unit::KM);
-    return temp;
+    PhysicalNumber toReturn = this->convertNumber(other);
+    double newValue = this->getValue() + toReturn.getValue();
+    toReturn.setValue(newValue);
+    return toReturn;
 }
+
 const PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber &other) const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    PhysicalNumber temp(1,ariel::Unit::KM);
-    return temp;
+    PhysicalNumber toReturn = this->convertNumber(other);
+    double newValue = this->getValue() - toReturn.getValue();
+    toReturn.setValue(newValue);
+    return toReturn;
 }
+
 const bool PhysicalNumber::operator>(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    return false;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double thisValue = this->getValue();
+    double otherValue = calcTemp.getValue();
+    return thisValue > otherValue;
 }
+
 const bool PhysicalNumber::operator<(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    return false;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double thisValue = this->getValue();
+    double otherValue = calcTemp.getValue();
+    return thisValue < otherValue;
 }
+
 const bool PhysicalNumber::operator>=(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    return false;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double thisValue = this->getValue();
+    double otherValue = calcTemp.getValue();
+    return thisValue >= otherValue;
 }
+
 const bool PhysicalNumber::operator<=(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    return false;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double thisValue = this->getValue();
+    double otherValue = calcTemp.getValue();
+    return thisValue <= otherValue;
 }
+
 const bool PhysicalNumber::operator==(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    return false;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double thisValue = this->getValue();
+    double otherValue = calcTemp.getValue();
+    return thisValue == otherValue;
 }
+
 const bool PhysicalNumber::operator!=(const PhysicalNumber& other)const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
-    return false;
+    PhysicalNumber calcTemp = this->convertNumber(other);
+    double thisValue = this->getValue();
+    double otherValue = calcTemp.getValue();
+    return thisValue != otherValue;
 }
+
 std::ostream &ariel::operator<<(std::ostream &os, PhysicalNumber const &m){
     return os;
 }
+
 std::istream &ariel::operator>>(std::istream &is, PhysicalNumber const &m){
     return is;
 }

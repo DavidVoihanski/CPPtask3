@@ -23,9 +23,9 @@ namespace ariel{
         void setUnit(Unit u);
         //arithmetics
         const PhysicalNumber& operator+(const PhysicalNumber& other) const;
-        const PhysicalNumber& operator+=(const PhysicalNumber& other) const;
+        const PhysicalNumber& operator+=(const PhysicalNumber& other);
         const PhysicalNumber& operator-(const PhysicalNumber& other) const;
-        const PhysicalNumber& operator-=(const PhysicalNumber& other) const;
+        const PhysicalNumber& operator-=(const PhysicalNumber& other);
         const PhysicalNumber& operator-() const;
         const PhysicalNumber& operator--();
         const PhysicalNumber& operator--(int);
