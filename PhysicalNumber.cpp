@@ -68,13 +68,13 @@ const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other){
     return *this;
 }
 
-const PhysicalNumber& PhysicalNumber::operator-() const{
+const PhysicalNumber PhysicalNumber::operator-() const{
     double newValue = -this->getValue();
     PhysicalNumber toReturn(newValue, this->getUnit());
     return toReturn;
 }
 
-const PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber &other) const{
+const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber &other) const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber toReturn = this->convertNumber(other);
     double newValue = this->getValue() + toReturn.getValue();
@@ -82,7 +82,7 @@ const PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber &other) con
     return toReturn;
 }
 
-const PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber &other) const{
+const PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber &other) const{
     if(!areSameType(other)) throw std::invalid_argument("types not compatible!");
     PhysicalNumber toReturn = this->convertNumber(other);
     double newValue = this->getValue() - toReturn.getValue();
@@ -170,7 +170,7 @@ bool PhysicalNumber::areSameScope(const PhysicalNumber &other) const{
 }
 
 //converts other to be the same scope as this
-const PhysicalNumber& PhysicalNumber::convertNumber(const PhysicalNumber &other) const{
+const PhysicalNumber PhysicalNumber::convertNumber(const PhysicalNumber &other) const{
     Unit thisUnit = this->getUnit();
     Unit otherUnit = other.getUnit();
     int thisInt = (int)thisUnit;
