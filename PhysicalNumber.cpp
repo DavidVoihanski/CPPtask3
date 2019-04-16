@@ -339,6 +339,7 @@ int PhysicalNumber::findUnitIndex(std::string unitString) const{
 bool PhysicalNumber::isGoodFormat(std::string input) const{
     if(input[0] == '[') return false;
     if(input[input.length() != ']']) return false;
+    std::cout << input[input.length()] << std::endl;
     if (input.find('[') == std::string::npos || input.find(']') == std::string::npos) return false;
     return true;
 }
