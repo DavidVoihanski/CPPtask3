@@ -247,7 +247,7 @@ double PhysicalNumber::convertTimeValue(int diff) const{
         return newValue;
 }
 
-double PhysicalNumber::convertTimeValue(int diff) const{
+double PhysicalNumber::convertMassValue(int diff) const{
     double newValue = this->getValue();
     Unit unit = this->getUnit();
     switch (diff)
