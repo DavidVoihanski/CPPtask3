@@ -70,7 +70,6 @@ const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other){
 
 const PhysicalNumber& PhysicalNumber::operator-() const{
     double newValue = -this->getValue();
-    PhysicalNumber
     PhysicalNumber toReturn(newValue, this->getUnit());
     return toReturn;
 }
