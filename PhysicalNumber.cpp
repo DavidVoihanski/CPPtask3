@@ -12,7 +12,8 @@ std::string PhysicalNumber::toString() const{
     double value = this->getValue();
     int arrayIndex = (int)this->getUnit();
     std::string unitString = this->units[arrayIndex];
-    std::string returnString = std::to_string(value) + '[' + unitString + ']';
+    std::string retString = std::to_string(value) + '[' + unitString + ']';
+    return retString;
 }
 //getters and setters
 Unit PhysicalNumber::getUnit() const{
