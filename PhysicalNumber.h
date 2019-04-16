@@ -13,6 +13,9 @@ namespace ariel{
         double convertDistanceValue(int diff) const;
         double convertTimeValue(int diff) const;
         double convertMassValue(int diff) const;
+        std::string parseUnit(std::string input) const;
+        double parseValue(std::string input) const;
+        int findUnitIndex(std::string unitString) const;
         public:
         std::string toString() const;
         std::string units[9] = {"km","m","cm","hour","min","sec","ton", "kg", "g"};
@@ -43,6 +46,6 @@ namespace ariel{
         bool operator!=(const PhysicalNumber& other)const;
         //input output
         friend std::ostream &operator<<(std::ostream &os, PhysicalNumber const &m);
-        friend std::istream &operator>>(std::istream &is, PhysicalNumber const &m);
+        friend std::istream &operator>>(std::istream &is, PhysicalNumber &m);
     };
 }

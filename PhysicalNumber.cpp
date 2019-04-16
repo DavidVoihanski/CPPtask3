@@ -157,7 +157,16 @@ std::ostream &ariel::operator<<(std::ostream &os, PhysicalNumber const &m){
     return os << m.getValue() << "[" <<unitString << "]";
 }
 
-std::istream &ariel::operator>>(std::istream &is, PhysicalNumber const &m){
+std::istream &ariel::operator>>(std::istream &is, PhysicalNumber &m){
+    std::string temp;
+    is >> temp;
+    const std::string input = temp;
+    std::string unitString = m.parseUnit(input);
+    double value = m.parseValue(input);
+    int unitIndex = m.findUnitIndex(unitString);
+    Unit unit = (Unit)unitIndex;
+    m.setValue(value);
+    m.setUnit(unit);
     return is;
 }
 
@@ -202,7 +211,6 @@ const PhysicalNumber PhysicalNumber::convertNumber(const PhysicalNumber &other) 
     else if(thisUnit == Unit::TON || thisUnit == Unit::KG || thisUnit == Unit::G){
         newValue = other.convertMassValue(diff);
     }
-    std::cout << diff << std::endl;
     PhysicalNumber toReturn(newValue, thisUnit);
     return toReturn;
 }
@@ -285,4 +293,29 @@ double PhysicalNumber::convertMassValue(int diff) const{
                 break;
         }
         return newValue;
+}
+
+double PhysicalNumber::parseValue(std::string input) const{
+    std::string delimiter = "[";
+    std::string valueString = input.substr(0, input.find(delimiter));
+    std::string::size_type sz;
+    double value = std::stod (valueString,&sz);
+    return value;
+}
+
+std::string PhysicalNumber::parseUnit(std::string input) const{
+    std::string delimiter = "[";
+    int start = input.find(delimiter) + 1;
+    delimiter = "]";
+    int end = input.find(delimiter);
+    int length = end - start;
+    std::string valueString = input.substr(start, length);
+    return valueString;
+}
+
+//returns -1 if unit doesn't exist
+int PhysicalNumber::findUnitIndex(std::string unitString) const{
+    for(int i =0; i<9; i++)
+        if(this->units[i].compare(unitString) == 0) return i;
+    return -1;
 }
