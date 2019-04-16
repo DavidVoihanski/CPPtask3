@@ -14,7 +14,7 @@ namespace ariel{
         double convertTimeValue(int diff) const;
         double convertMassValue(int diff) const;
         public:
-        std::string toString();
+        std::string toString() const;
         std::string units[9] = {"km","m","cm","hour","min","sec","ton", "kg", "g"};
         PhysicalNumber(double num, Unit unit);
         ~PhysicalNumber();
