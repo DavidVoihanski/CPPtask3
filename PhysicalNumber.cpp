@@ -152,8 +152,9 @@ bool PhysicalNumber::operator!=(const PhysicalNumber& other)const{
 
 //io*****************************************************************************************************************
 std::ostream &ariel::operator<<(std::ostream &os, PhysicalNumber const &m){
-    std::string numString = m.toString();
-    return os << numString;
+
+    std::string unitString = m.units[(int)m.getUnit()];
+    return os << m.getValue() << "[" <<unitString << "]";
 }
 
 std::istream &ariel::operator>>(std::istream &is, PhysicalNumber const &m){
