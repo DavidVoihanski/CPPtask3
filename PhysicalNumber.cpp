@@ -5,6 +5,9 @@ PhysicalNumber::PhysicalNumber(double num, ariel::Unit unit){
     this->value = num;
     this->unit = unit;
 }
+PhysicalNumber::~PhysicalNumber(){
+    
+}
 //getters and setters
 Unit PhysicalNumber::getUnit() const{
     return this->unit;
@@ -26,7 +29,7 @@ const PhysicalNumber& PhysicalNumber::operator++(){
     return *this;
 }
 //postfix
-const PhysicalNumber& PhysicalNumber::operator++(int){
+const PhysicalNumber PhysicalNumber::operator++(int){
     double temp = this->getValue();
     PhysicalNumber returned(temp, this->getUnit());
     temp++;
@@ -41,7 +44,7 @@ const PhysicalNumber& PhysicalNumber::operator--(){
     return *this;
 }
 //postfix
-const PhysicalNumber& PhysicalNumber::operator--(int){
+const PhysicalNumber PhysicalNumber::operator--(int){
     double newValue = this->getValue();
     PhysicalNumber returned(newValue, this->getUnit());
     newValue--;
@@ -67,6 +70,7 @@ const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber &other){
 
 const PhysicalNumber& PhysicalNumber::operator-() const{
     double newValue = -this->getValue();
+    PhysicalNumber
     PhysicalNumber toReturn(newValue, this->getUnit());
     return toReturn;
 }

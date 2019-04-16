@@ -16,6 +16,7 @@ namespace ariel{
         public:
         //std::string units[9] = {"KM","M","CM","HOUR","MIN","SEC","TON", "KG", "G"};
         PhysicalNumber(double num, Unit unit);
+        ~PhysicalNumber();
         //getters and setters
         double getValue() const;
         Unit getUnit() const;
@@ -28,9 +29,9 @@ namespace ariel{
         const PhysicalNumber& operator-=(const PhysicalNumber& other);
         const PhysicalNumber& operator-() const;
         const PhysicalNumber& operator--();
-        const PhysicalNumber& operator--(int);
+        const PhysicalNumber operator--(int);
         const PhysicalNumber& operator++();
-        const PhysicalNumber& operator++(int);
+        const PhysicalNumber operator++(int);
         //compare
         const bool operator>(const PhysicalNumber& other)const;
         const bool operator<(const PhysicalNumber& other)const;
